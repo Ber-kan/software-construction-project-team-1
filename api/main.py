@@ -167,7 +167,7 @@ class ApiRequestHandler(http.server.BaseHTTPRequestHandler):
                 case _:
                     self.send_response(404)
                     self.end_headers()
-        elif path[0] == "item_groups":
+        elif path[0] == "item_groups":                  #http://localhost:3000/api/v1/item_groups returns all item groups
             paths = len(path)
             match paths:
                 case 1:
