@@ -95,6 +95,7 @@ class ApiRequestHandler(http.server.BaseHTTPRequestHandler):
                     self.send_response(404)
                     self.end_headers()
         elif path[0] == "items":
+            #returnt descriptie, groep,lijn, aantallen, de suppliers, aanmaak datum#
             paths = len(path)
             match paths:
                 case 1:
@@ -228,6 +229,7 @@ class ApiRequestHandler(http.server.BaseHTTPRequestHandler):
                     self.send_response(404)
                     self.end_headers()
         elif path[0] == "inventories":
+            #sorteert op id nummer vanaf 1 als je kiest om dat de doen, informatie over de locaties en aantallen#
             paths = len(path)
             match paths:
                 case 1:
@@ -247,6 +249,7 @@ class ApiRequestHandler(http.server.BaseHTTPRequestHandler):
                     self.send_response(404)
                     self.end_headers()
         elif path[0] == "suppliers":
+            #sorteert op id, toont naam, adres, city, telefoonnummer referentie (dus persoonsinformatie over de supplier)
             paths = len(path)
             match paths:
                 case 1:
