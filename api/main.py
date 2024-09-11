@@ -167,7 +167,7 @@ class ApiRequestHandler(http.server.BaseHTTPRequestHandler):
                 case _:
                     self.send_response(404)
                     self.end_headers()
-        elif path[0] == "item_groups":                  #http://localhost:3000/api/v1/item_groups returns all item groups
+        elif path[0] == "item_groups":                  # GET > api/v1/item_groups > returns all item groups
             paths = len(path)
             match paths:
                 case 1:
@@ -184,7 +184,7 @@ class ApiRequestHandler(http.server.BaseHTTPRequestHandler):
                     self.end_headers()
                     self.wfile.write(json.dumps(item_group).encode("utf-8"))
                 case 3:
-                    if path[2] == "items":
+                    if path[2] == "items":           # GET > api/v1/item_groups/1/items > returns items from a item group
                         item_group_id = int(path[1])
                         items = data_provider.fetch_item_pool().get_items_for_item_group(item_group_id)
                         self.send_response(200)
