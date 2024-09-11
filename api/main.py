@@ -19,21 +19,21 @@ class ApiRequestHandler(http.server.BaseHTTPRequestHandler):
             paths = len(path)
             match paths:
                 case 1:
-                    warehouses = data_provider.fetch_warehouse_pool().get_warehouses()
+                    warehouses = data_provider.fetch_warehouse_pool().get_warehouses()  #localhost:3000/api/v1/warehouses returns all warehouses
                     self.send_response(200)
                     self.send_header("Content-type", "application/json")
                     self.end_headers()
                     self.wfile.write(json.dumps(warehouses).encode("utf-8"))
                 case 2:
-                    warehouse_id = int(path[1])
+                    warehouse_id = int(path[1])                                         #localhost:3000/api/v1/warehouses/1/  return specifiek warehouse id 
                     warehouse = data_provider.fetch_warehouse_pool().get_warehouse(warehouse_id)
                     self.send_response(200)
                     self.send_header("Content-type", "application/json")
                     self.end_headers()
                     self.wfile.write(json.dumps(warehouse).encode("utf-8"))
                 case 3:
-                    if path[2] == "locations":
-                        warehouse_id = int(path[1])
+                    if path[2] == "locations":                          # localhost:3000/api/v1/warehouses/1/locations return all warehouses with that location 
+                        warehouse_id = int(path[1]) 
                         locations = data_provider.fetch_location_pool().get_locations_in_warehouse(warehouse_id)
                         self.send_response(200)
                         self.send_header("Content-type", "application/json")
