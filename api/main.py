@@ -397,7 +397,7 @@ class ApiRequestHandler(http.server.BaseHTTPRequestHandler):
             self.send_response(403)
             self.end_headers()
             return
-        if path[0] == "warehouses":                 # POST >  > 
+        if path[0] == "warehouses":                  
             content_length = int(self.headers["Content-Length"])
             post_data = self.rfile.read(content_length)
             new_warehouse = json.loads(post_data.decode())
@@ -438,7 +438,7 @@ class ApiRequestHandler(http.server.BaseHTTPRequestHandler):
             data_provider.fetch_inventory_pool().save()
             self.send_response(201)
             self.end_headers()
-        elif path[0] == "suppliers":
+        elif path[0] == "suppliers":                # POST > api/v1/suppliers Content_type application/json {json data} > posts a new supplier with the given data
             content_length = int(self.headers["Content-Length"])
             post_data = self.rfile.read(content_length)
             new_supplier = json.loads(post_data.decode())
@@ -446,7 +446,7 @@ class ApiRequestHandler(http.server.BaseHTTPRequestHandler):
             data_provider.fetch_supplier_pool().save()
             self.send_response(201)
             self.end_headers()
-        elif path[0] == "orders":
+        elif path[0] == "orders":                   # POST > api/v1/orders Content_type application/json {json data} > posts a new order with the given data
             content_length = int(self.headers["Content-Length"])
             post_data = self.rfile.read(content_length)
             new_order = json.loads(post_data.decode())
