@@ -397,7 +397,7 @@ class ApiRequestHandler(http.server.BaseHTTPRequestHandler):
             self.send_response(403)
             self.end_headers()
             return
-        if path[0] == "warehouses":
+        if path[0] == "warehouses":                 # POST >  > 
             content_length = int(self.headers["Content-Length"])
             post_data = self.rfile.read(content_length)
             new_warehouse = json.loads(post_data.decode())
@@ -708,19 +708,19 @@ class ApiRequestHandler(http.server.BaseHTTPRequestHandler):
             self.send_response(403)
             self.end_headers()
             return
-        if path[0] == "warehouses":
+        if path[0] == "warehouses":             # DELETE > api/v1/warehouses/id > deletes a warehouse by id
             warehouse_id = int(path[1])
             data_provider.fetch_warehouse_pool().remove_warehouse(warehouse_id)
             data_provider.fetch_warehouse_pool().save()
             self.send_response(200)
             self.end_headers()
-        elif path[0] == "locations":
+        elif path[0] == "locations":            # DELETE > api/v1/locations/id > deletes a location by id
             location_id = int(path[1])
             data_provider.fetch_location_pool().remove_location(location_id)
             data_provider.fetch_location_pool().save()
             self.send_response(200)
             self.end_headers()
-        elif path[0] == "transfers":
+        elif path[0] == "transfers":            # DELETE > api/v1/transfers/id > deletes a transfer by id
             transfer_id = int(path[1])
             data_provider.fetch_transfer_pool().remove_transfer(transfer_id)
             data_provider.fetch_transfer_pool().save()
